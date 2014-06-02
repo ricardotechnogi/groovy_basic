@@ -1,18 +1,19 @@
 package groovysampleapp
 
-import groovyCode.Dog
 
 /**
  *
  * @author rmoguel
  */
-class GroovySampleApp {
+println "This is groovy program" 
+def yui = new Dog(name:"Yui")
+println yui.bark()
 
-    public static void main(String[] args) {
-        System.out.println("This is groovy program");
-        Dog yui = new Dog();
-        yui.setName("Yui");
-        System.out.println(yui.bark());
+class Dog {
+    String name
+
+    String bark(){
+         """ ${this.name} is barking! woof! """
     }
 }
   

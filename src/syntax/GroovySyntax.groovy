@@ -4,7 +4,7 @@ package syntax
  *
  * @author rmoguel
  */
-println "Runing Sintaxes"
+println "Running Sintaxes"
 //-------STATEMENTS
 
 
@@ -12,7 +12,7 @@ println "Runing Sintaxes"
 //        assert a == 1
 //        assert b == 2
         
-//        def (_lat, _long) = GroovySyntax.geocode("Paris")
+//        def (_lat, _long) = geocode("Paris")
 //        assert _lat == 48.824068
 //        assert _long == 2.531733
 
@@ -29,8 +29,8 @@ println "Runing Sintaxes"
 
 //-----------OPTIONAL PARENTHESIS
 
-//        def p = GroovySyntax.calculatePrice 2
-//        assert p == 2.46
+//        def p = calculatePrice 2,4
+//        assert p == 9.84
         
 //-----------NAMED PARAMETERS
 
@@ -39,7 +39,7 @@ println "Runing Sintaxes"
 
 //-----------SAFE NAVIGATION
 
-//            def foo = null
+//            def foo = new Expando(something:null)
 //            def bar = foo?.something?.myMethod()
 //            assert bar == null
             
@@ -68,9 +68,9 @@ println "Runing Sintaxes"
 //        println newList 
 //        
 //        
-//        def list2 = ['a','b','c','d']
+//        def list2 = ["a","b","c","d"]
 //        def newList2 = []
-//        def clos = { it.toUpperCase() }
+//        def clos = { if (it.metaClass.respondsTo(it,"toUpperCase")){it.toUpperCase()}else{"caca"} }
 //        list2.collect( newList2, clos )
 //        print newList2
 
@@ -108,25 +108,31 @@ println "Runing Sintaxes"
 //        assert range.contains('d')
 //        assert ! range.contains('e')
 
-
+//        def clos = {i->println "Hello closure${i}"}
 //        (1..10).each { i ->
 //          println "Hello ${i}"
 //        }
 
+//          def years = 5
 //        switch (years) {
-//           case 1..10: interestRate = 0.076; break;
-//          case 11..25: interestRate = 0.052; break;
-//              default: interestRate = 0.037;
+//           case 1..10: interestRate = 0.076
+//                        break
+//          case 11..25: 
+//                        interestRate = 0.052
+//                        break;
+//              default: interestRate = 0.037
 //        }
 
 
 //-----------MAPS
 
-//        def map = [name:"Gromit", likes:"cheese", id:1234]
+//        def map = [name:"Gromit", likes:"cheese", id:1234, t:{println "hello world"}]
 //        assert map.get("name") == "Gromit"
 //        assert map.get("id") == 1234
 //        assert map["name"] == "Gromit"
 //        assert map['id'] == 1234
+//        assert map.name =="Gromit"
+//        println map.t
 //        assert map instanceof java.util.Map
 
 
@@ -136,7 +142,7 @@ println "Runing Sintaxes"
 
 //        def text = "nice cheese gromit!"
 //        def x = text[2]
-//
+//        assert text[0..-2]=="nice cheese gromit"
 //        assert x == "c"
 //        assert x.class == String
 //
@@ -183,8 +189,8 @@ def static geocode(String location) {
     [48.824068, 2.531733]
 }
 
-def static calculatePrice(multiplyer) {
-            1.23*multiplyer
+def calculatePrice(multiplyer,mult2) {
+            1.23*multiplyer*mult2
 }
 
 

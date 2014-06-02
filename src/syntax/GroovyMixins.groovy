@@ -15,10 +15,12 @@ print "Running Mixins and Categories!"
 
 @Category(Animal) class FlyingAbility {
     def fly() { "I'm a ${name} and I fly!" }
+    def walk() { "I'm a ${name} and I walk flying!" }
 }
 
 @Category(Animal) class SwimmingAbility {
     def swim() { "I'm a ${name} and I swim!" }
+    def walk() { "I'm a ${name} and I walk swimming!" }
 }
 
 interface Animal {
@@ -35,9 +37,10 @@ class Bird implements Animal {
     String getName() { "bird" }
 }
 
-@Mixin([FlyingAbility,SwimmingAbility])
+@Mixin([SwimmingAbility,FlyingAbility])
 class Duck implements Animal {
     String getName() { "duck" }
+    def walk() { "I'm a ${name} and I walk as a duck!" }
 }
 
 assert new Bird().fly() ==
@@ -50,3 +53,4 @@ assert new Duck().fly() ==
 assert new Duck().swim() ==
        "I'm a duck and I swim!"
 
+println new Duck().walk()
